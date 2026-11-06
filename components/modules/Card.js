@@ -21,10 +21,10 @@ function Card(props) {
         <Dollar />
         {discount ? (
           <span className={styles.discount}>
-            {(price * (100 - discount)) / 100}$
+            ${(price * (100 - discount)) / 100}
           </span>
         ) : (
-          <span>{price}$</span>
+          <span>${price}</span>
         )}
         {discount ? <div className={styles.badge}>{discount}%</div> : null}
       </div>
