@@ -1,6 +1,8 @@
+import DetailsPage from "@/components/templates/DetailsPage"
+
 function Details({ data }) {
   console.log(data)
-  return <div>Details</div>
+  return <DetailsPage {...data} />
 }
 
 export default Details
