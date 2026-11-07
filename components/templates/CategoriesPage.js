@@ -1,27 +1,44 @@
+import { useState } from "react"
 import styles from "./CategoriesPage.module.css"
+import { useRouter } from "next/router"
 
 function CategoriesPage() {
+  const router = useRouter()
+  const [query, setQuery] = useState({ difficulty: "", time: "" })
+
+  const changeHandler = (e) =>
+    setQuery({ ...query, [e.target.name]: e.target.value })
+
+  const searchHandler = () => {
+    console.log(query)
+    router.push({ pathname: "/categories", query })
+  }
+
   return (
     <div className={styles.container}>
       <h2>Categories</h2>
       <div className={styles.subContainer}>
         <div className={styles.select}>
-          <select>
-            <option defaultChecked disabled>
+          <select
+            value={query.difficulty}
+            name="difficulty"
+            onChange={changeHandler}
+          >
+            <option disabled value="">
               Difficulty
             </option>
-            <option>Easy</option>
-            <option>Medium</option>
-            <option>Hard</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
           </select>
-          <select>
-            <option defaultChecked disabled>
+          <select value={query.time} name="time" onChange={changeHandler}>
+            <option disabled value="">
               Cooking Time
             </option>
-            <option>More than 30 min</option>
-            <option>Less than 30 min</option>
+            <option value="More">More than 30 min</option>
+            <option value="Less">Less than 30 min</option>
           </select>
-          <button>Search</button>
+          <button onClick={searchHandler}>Search</button>
         </div>
       </div>
     </div>
