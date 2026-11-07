@@ -10,5 +10,5 @@ export async function getStaticProps() {
   const data = await fetch("http://localhost:4000/data")
   const parsedData = await data.json()
 
-  return { props: { foods: parsedData }, revalidate: 10 }
+  return { props: { foods: parsedData }, revalidate: 10 * 60 * 60 }
 }

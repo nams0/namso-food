@@ -21,5 +21,9 @@ export async function getStaticProps(context) {
   console.log(params)
   const res = await fetch(`http://localhost:4000/data/${params.id}`)
   const data = await res.json()
-  return { props: { data }, revalidate: 10, notFound: !data.id ? true : false }
+  return {
+    props: { data },
+    revalidate: 10 * 60 * 60, //seconds
+    notFound: !data.id ? true : false,
+  }
 }
