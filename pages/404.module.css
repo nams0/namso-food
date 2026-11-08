@@ -1,0 +1,158 @@
+.container {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #ffffff;
+}
+
+.content {
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+}
+
+.illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.number {
+  font-size: clamp(100px, 20vw, 170px);
+  font-weight: 800;
+  line-height: 1;
+  color: #53c60b;
+  letter-spacing: -8px;
+}
+
+.foodIcon {
+  width: clamp(90px, 15vw, 140px);
+  height: clamp(90px, 15vw, 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1fbe9;
+  border-radius: 50%;
+  font-size: clamp(48px, 9vw, 75px);
+  transform: rotate(-12deg);
+  box-shadow: 0 12px 30px rgba(83, 198, 11, 0.12);
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: #f1fbe9;
+  color: #53c60b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.title {
+  margin-bottom: 15px;
+  color: #252525;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.description {
+  max-width: 520px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.homeButton,
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.homeButton {
+  background: #53c60b;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(83, 198, 11, 0.2);
+}
+
+.homeButton:hover {
+  background: #45a809;
+  transform: translateY(-3px);
+}
+
+.menuButton {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #333;
+}
+
+.menuButton:hover {
+  border-color: #53c60b;
+  color: #53c60b;
+  transform: translateY(-3px);
+}
+
+.footerText {
+  margin-top: 35px;
+  color: #999;
+  font-size: 13px;
+}
+
+.footerText a {
+  color: #53c60b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footerText a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .container {
+    min-height: 70vh;
+    padding: 40px 16px;
+  }
+
+  .illustration {
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+
+  .number {
+    letter-spacing: -5px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .homeButton,
+  .menuButton {
+    width: 100%;
+  }
+}
