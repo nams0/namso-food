@@ -1,25 +1,90 @@
 .container {
-  margin-bottom: 100px;
+  margin-top: 110px;
 }
 
-.container h3 {
-  font-size: 1.5rem;
+.heading {
+  margin-bottom: 40px;
+}
+
+.heading > span {
   color: #53c60b;
-  margin: 24px 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
-.container ul {
-  padding: 0;
+.heading h2 {
+  font-size: 2rem;
+  color: #252525;
+  margin: 12px 0;
 }
 
-.container li {
+.heading p {
+  color: #999;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  background: white;
+  transition: all 0.25s ease;
+}
+
+.step:hover {
+  background: #fbfff8;
+  border-color: #c8edb5;
+  transform: translateY(-3px);
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: #eaffdf;
+  color: #53c60b;
   font-size: 1.1rem;
-  font-weight: 500;
-  line-height: 30px;
-  list-style: none;
+  font-weight: 800;
 }
 
-.container li::before {
-  content: "• ";
-  color: #53c60b;
+.step p {
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 650px) {
+  .container {
+    margin-top: 75px;
+  }
+
+  .heading h2 {
+    font-size: 1.7rem;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .step {
+    padding: 18px;
+  }
 }

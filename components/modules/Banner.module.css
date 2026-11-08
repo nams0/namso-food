@@ -1,67 +1,249 @@
 .container {
-  display: flex;
-}
-.right img {
-  width: 450px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-top: -50px;
+  gap: 50px;
+  min-height: 480px;
+  padding: 45px;
+  background: linear-gradient(120deg, #f6fff0, #ffffff);
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .left {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  align-items: flex-start;
 }
 
-.left h2 {
-  border-bottom: 3px solid #53c60b;
-  width: fit-content;
-  margin: 20px 0;
+.eyebrow {
+  color: #53c60b;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
-.left p {
-  font-weight: 500;
-  margin: 16px 0;
+.left h1 {
+  font-size: clamp(2.3rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  color: #252525;
+  margin: 0;
 }
 
-.left span {
-  color: grey;
-  text-align: justify;
+.left h1 span {
+  display: block;
+  color: #53c60b;
 }
 
-.left a {
-  background-color: #53c60b;
-  color: white;
-  padding: 10px 30px;
-  width: fit-content;
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 22px 0 10px;
+  color: #333;
+}
+
+.description {
+  color: #777;
+  font-size: 1rem;
+  line-height: 1.9;
+  max-width: 480px;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
   margin-top: 30px;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
 }
 
-.left a:hover {
-  background-color: #234a0b;
+.primaryButton,
+.secondaryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.primaryButton {
+  background: #53c60b;
+  color: white;
+}
+
+.primaryButton:hover {
+  background: #43a508;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(83, 198, 11, 0.2);
+}
+
+.primaryButton span {
+  font-size: 1.3rem;
+}
+
+.secondaryButton {
+  border: 1px solid #ddd;
+  color: #555;
+  background: white;
+}
+
+.secondaryButton:hover {
+  border-color: #53c60b;
+  color: #53c60b;
+}
+
+.highlights {
+  display: flex;
+  gap: 35px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+}
+
+.highlights div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.highlights strong {
+  color: #333;
+  font-size: 1rem;
+}
+
+.highlights span {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.imageBackground {
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 1;
+  background: #e5f8d9;
+  border-radius: 50%;
+}
+
+.right img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.12));
+}
+
+.floatingCard {
+  position: absolute;
+  z-index: 2;
+  bottom: 15px;
+  left: -15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.foodIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eaffdf;
+  color: #53c60b;
+  font-size: 1.4rem;
+}
+
+.floatingCard div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.floatingCard strong {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.floatingCard div span {
+  font-size: 0.75rem;
+  color: #999;
 }
 
 @media (max-width: 900px) {
-  .right img {
-    width: 350px;
+  .container {
+    gap: 20px;
+    padding: 30px;
   }
-  .left {
-    margin-top: 10px;
+
+  .highlights {
+    gap: 20px;
+  }
+
+  .floatingCard {
+    left: -5px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .container {
-    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
+    padding: 25px 20px 40px;
+    gap: 35px;
   }
-  .right {
-    text-align: center;
+
+  .left h1 {
+    font-size: 2.5rem;
   }
+
   .right img {
-    width: 90%;
+    max-width: 350px;
   }
-  .left {
-    margin-top: 20px;
+
+  .floatingCard {
+    bottom: 0;
+    left: 0;
+  }
+
+  .highlights {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .actions {
+    width: 100%;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .floatingCard {
+    padding: 10px;
+  }
+
+  .floatingCard strong {
+    font-size: 0.75rem;
   }
 }

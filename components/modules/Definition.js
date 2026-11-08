@@ -2,17 +2,31 @@ import styles from "./Definition.module.css"
 
 function Definition() {
   return (
-    <div className={styles.container}>
-      <h3>Who We Are?</h3>
-      <p>
-        NamsoFood company was founded in 2009 by Garrett Camp and Travis
-        Kalanick.The company began food delivery in August 2014 with the launch
-        of the UberFRESH service in Santa Monica, California. In 2015, the
-        platform was renamed to UberEATS and the ordering software was released
-        as its own application, separate from the app for Uber rides.In 2016, it
-        commenced operations in both London and Paris.
-      </p>
-    </div>
+    <section className={styles.container}>
+      <div className={styles.content}>
+        <span>ABOUT NAMSOFOOD</span>
+        <h2>Who We Are?</h2>
+
+        <p>
+          NamsoFood is a food ordering and delivery platform designed to make
+          discovering and ordering your favorite meals easier. We bring
+          restaurants and customers together through a simple and convenient
+          experience.
+        </p>
+
+        <p>
+          Explore different cuisines, discover new restaurants, and enjoy your
+          favorite dishes whenever you want. Great food is just a few clicks
+          away!
+        </p>
+      </div>
+
+      <div className={styles.sideContent}>
+        <span>Good Food</span>
+        <strong>Better Moments.</strong>
+        <div className={styles.decoration}>✦</div>
+      </div>
+    </section>
   )
 }
 

@@ -2,15 +2,20 @@ import styles from "./Restrictions.module.css"
 
 function Restrictions() {
   return (
-    <div className={styles.container}>
-      <h3>Restrictions</h3>
-      <p>
-        Prohibited items. Merchants may only offer to sell items expressly
-        permitted by their agreement with Uber. A merchant cannot offer
-        specially regulated or illicit items, like cannabidiol (CBD) and
-        tetrahydrocannabinol (THC), on their Uber Eats menu.
-      </p>
-    </div>
+    <section className={styles.container}>
+      <div className={styles.icon}>!</div>
+
+      <div className={styles.content}>
+        <h2>Important Information</h2>
+
+        <p>
+          Merchants may only offer items expressly permitted by their agreements
+          with the platform. Specially regulated or prohibited products,
+          including certain controlled substances, cannot be offered through the
+          food menu.
+        </p>
+      </div>
+    </section>
   )
 }
 

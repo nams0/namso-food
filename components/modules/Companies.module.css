@@ -1,5 +1,62 @@
 .container {
+  margin-top: 100px;
+  padding: 40px 30px 0 30px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.heading {
+  text-align: center;
+}
+
+.heading span {
+  color: #53c60b;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.heading h2 {
+  color: #333;
+  font-size: 1.6rem;
+  margin: 10px 0 0;
+}
+
+.logoContainer {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.logoContainer div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  opacity: 0.55;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.logoContainer div:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: translateY(-4px);
+}
+
+.logoContainer svg {
+  max-width: 130px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 30px 15px;
+    margin-top: 70px;
+  }
+
+  .logoContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
