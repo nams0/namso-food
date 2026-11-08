@@ -1,40 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# NamsoFood 🍕
 
-## Getting Started
+A Next.js Responsived food discovery web app where users can browse a menu, filter dishes by difficulty and cooking time, and view detailed recipe pages with ingredients, preparation steps, and pricing.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- **Home page** — Landing page built from modular sections (Banner, Attributes, Definition, Companies, Instruction, Guide, Restrictions).
+- **Menu** — Browse all available dishes rendered as cards with image, cuisine, price, and discount badge.
+- **Categories** — Filter dishes by **difficulty** (Easy / Medium / Hard) and **cooking time** (Less than 30 min / More than 30 min) using URL query params.
+- **Food details** — Full recipe page with introduction, food details, ingredients checklist, numbered preparation steps, and discounted pricing.
+- **Custom 404** — Friendly not-found page with links back to home and menu.
+- **Responsive card grid** with hover states and discount highlighting.
+
+---
+
+## Tech Stack
+
+- **Next.js** (Pages Router — SSG + SSR)
+- **React** (Hooks)
+- **CSS Modules** for scoped styling
+- **JSON Server** (external API at `http://localhost:4000/data`)
+
+---
+
+## Project Structure
+
+```
+├── components/
+│   ├── icons/
+│   ├── layout/
+│   │   └── Layout.js
+│   ├── modules/
+│   │   ├── Card.js
+│   │   ├── Banner.js
+│   │   ├── Attributes.js
+│   │   ├── Definition.js
+│   │   ├── Companies.js
+│   │   ├── Instruction.js
+│   │   ├── Guide.js
+│   │   └── Restrictions.js
+│   └── templates/
+│       ├── HomePage.js
+│       ├── MenuPage.js
+│       ├── CategoriesPage.js
+│       └── DetailsPage.js
+├── pages/
+│   ├── _app.js
+│   ├── index.js
+│   ├── 404.js
+│   ├── menu/
+│   │   ├── index.js      # SSG — all foods
+│   │   └── [id].js       # SSG — single food details
+│   └── categories/
+│       └── index.js      # SSR — filtered foods
+└── styles/
+    └── globals.css
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Data Fetching Strategy
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+| Page          | Method                              | Notes                                                                                        |
+| ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- |
+| `/`           | Static                              | Composed of client components                                                                |
+| `/menu`       | `getStaticProps`                    | `revalidate: 36000` (10 hours)                                                               |
+| `/menu/[id]`  | `getStaticPaths` + `getStaticProps` | Pre-renders top 10 foods, `fallback: "blocking"`, 10h revalidate, `notFound` for missing IDs |
+| `/categories` | `getServerSideProps`                | Reads `difficulty` & `time` query params and filters server-side                             |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Filtering Logic (Categories)
 
-## Learn More
+- **Difficulty** — matches against `details[].Difficulty`
+- **Time** — parses `details[].Cooking Time`, extracts the numeric minutes:
+  - `Less` → ≤ 30 minutes
+  - `More` → > 30 minutes
+- Filters are combinable; the selected values are pushed to the URL as query params so results are shareable and SSR-friendly.
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Home Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![Home Page](./docs/home-page.png)
 
-## Deploy on Vercel
+> Landing page with banner, attributes, and feature sections.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Menu
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+![Menu Page](./docs/menu.png)
+
+> Browse all available dishes as cards with cuisine, price, and discount badges.
+
+### Categories / Filter
+
+![Categories Page](./docs/category-empty.png)
+
+![Categories Page](./docs/category.png)
+
+> Filter dishes by difficulty (Easy / Medium / Hard) and cooking time (<30 min / >30 min).
+
+### Food Details
+
+![Details Page](./docs/food-details.png)
+
+> Full recipe view with ingredients, step-by-step preparation, and pricing.
+
+### 404 Page
+
+![404 Page](./docs/not-found.png)
+
+> Custom "off the menu" not-found page with quick navigation links.
